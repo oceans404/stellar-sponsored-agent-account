@@ -9,7 +9,7 @@ AI agents need a Stellar account to send and receive USDC. Creating one normally
 Tell your AI agent:
 
 ```
-Create a Stellar account for USDC. Check out this skill to learn how: https://stellar-sponsored-agent-account.onrender.com/skill.md
+Create a Stellar account for USDC. Check out this skill to learn how: https://stellar-sponsored-agent-account.onrender.com/SKILL.md
 ```
 
 The agent will read the skill, generate a keypair, and walk through the full onboarding flow autonomously.
@@ -23,7 +23,7 @@ The agent will read the skill, generate a keypair, and walk through the full onb
 
 This is the reference implementation for Stellar agent account sponsorship. It's open source — anyone can fork, deploy, and fund with their own XLM. The Stellar Foundation runs a public instance as a fallback for agents that aren't going through a wallet service.
 
-The service includes a **skill** (`GET /skill.md`) — a self-contained guide written for AI agents that teaches them how to use the API end-to-end. Point an agent at this endpoint and it has everything it needs: prerequisites, step-by-step flow, code examples, error handling, and trust model. See [`src/skill.md`](src/skill.md) for the source.
+The service includes a **skill** (`GET /SKILL.md`) — a self-contained guide written for AI agents that teaches them how to use the API end-to-end, following the [Agent Skills spec](https://agentskills.io/specification). Point an agent at this endpoint and it has everything it needs: prerequisites, step-by-step flow, code examples, error handling, and trust model. See [`src/SKILL.md`](src/SKILL.md) for the source.
 
 ## Quick Start
 
@@ -98,9 +98,9 @@ Service configuration: sponsor key, balance, network, USDC issuer, explorer URL,
 
 Health check with sponsor balance and channel pool status.
 
-### `GET /skill.md`
+### `GET /SKILL.md`
 
-Agent-facing onboarding guide. If an AI agent discovers this service, this endpoint tells it exactly how to get a Stellar USDC wallet — step by step, with code examples. Served with dynamic values (base URL, network, reservation TTL).
+Agent-facing onboarding skill following the [Agent Skills spec](https://agentskills.io/specification). If an AI agent discovers this service, this endpoint tells it exactly how to get a Stellar USDC wallet — step by step, with code examples. Served with dynamic values (base URL, network, reservation TTL).
 
 ### `GET /openapi.json`
 

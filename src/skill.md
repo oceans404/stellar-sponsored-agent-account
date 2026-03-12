@@ -1,4 +1,14 @@
-# Stellar Sponsored Agent Account — Skill for AI Agents
+---
+name: stellar-sponsored-agent-account
+description: Create a Stellar USDC wallet for an AI agent in two API calls. Use when an agent needs to hold, receive, or send USDC on Stellar {{NETWORK}} and doesn't have a Stellar account yet.
+license: MIT
+metadata:
+  author: oceans404
+  version: "1.0"
+  source: https://github.com/oceans404/stellar-sponsored-agent-account
+---
+
+# Stellar Sponsored Agent Account
 
 > Base URL: `{{BASE_URL}}`
 > Network: **{{NETWORK}}**
@@ -86,7 +96,7 @@ curl -s {{BASE_URL}}/info | jq .
   "horizon_url": "https://horizon-testnet.stellar.org",
   "available_channels": 5,
   "api_docs": "/openapi.json",
-  "agent_skill": "/skill.md"
+  "agent_skill": "/SKILL.md"
 }
 ```
 

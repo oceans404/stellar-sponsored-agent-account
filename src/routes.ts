@@ -349,7 +349,7 @@ export function createApp(state: AppState) {
         explorer_url: config.explorerUrl,
         available_channels: channelPool.availableCount(),
         api_docs: '/openapi.json',
-      agent_skill: '/skill.md',
+      agent_skill: '/SKILL.md',
       },
       200,
     );
@@ -375,15 +375,15 @@ export function createApp(state: AppState) {
   });
 
   // GET /openapi.json — auto-generated from route definitions
-  // GET /skill.md
-  app.get('/skill.md', (c) => {
+  // GET /SKILL.md
+  app.get('/SKILL.md', (c) => {
     const proto = c.req.header('x-forwarded-proto') || 'http';
     const host = c.req.header('host') || `localhost:${config.port}`;
     const baseUrl = `${proto}://${host}`;
 
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
-    const template = readFileSync(join(__dirname, 'skill.md'), 'utf-8');
+    const template = readFileSync(join(__dirname, 'SKILL.md'), 'utf-8');
     const ttlSeconds = Math.round(config.channelReservationTtlMs / 1000);
     const content = template
       .replaceAll('{{BASE_URL}}', baseUrl)

@@ -1,0 +1,28 @@
+{
+  "name": "stellar-sponsored-agent-account",
+  "version": "1.0.0",
+  "description": "Give any AI agent a Stellar USDC wallet in two API calls. Sponsors account creation and USDC trustline so agents can start transacting immediately.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "setup-channels": "tsx scripts/setup-channels.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "@hono/zod-openapi": "^1.2.2",
+    "@stellar/stellar-sdk": "^13.1.0",
+    "dotenv": "^16.4.7",
+    "hono": "^4.7.5",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
+  }
+}

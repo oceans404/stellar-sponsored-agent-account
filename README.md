@@ -4,6 +4,16 @@ Give any AI agent a Stellar USDC wallet in two API calls. No prior balance neede
 
 AI agents need a Stellar account to send and receive USDC. Creating one normally requires XLM (Stellar's native currency) — a chicken-and-egg problem. This service solves it by covering the ~1 XLM setup cost on behalf of the agent using Stellar's built-in [sponsorship protocol](https://developers.stellar.org/docs/glossary/sponsored-reserves/). The agent keeps full control of its own keys.
 
+## Try it now
+
+Tell your AI agent:
+
+```
+Create a Stellar account for USDC. Check out this skill to learn how: https://stellar-sponsored-agent-account.onrender.com/skill.md
+```
+
+The agent will read the skill, generate a keypair, and walk through the full onboarding flow autonomously.
+
 ### How it works
 
 1. Agent generates a keypair locally (private key never leaves the agent)

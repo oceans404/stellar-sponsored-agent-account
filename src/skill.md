@@ -2,6 +2,7 @@
 
 > Base URL: `{{BASE_URL}}`
 > Network: **{{NETWORK}}**
+> Source: [github.com/oceans404/stellar-sponsored-agent-account](https://github.com/oceans404/stellar-sponsored-agent-account)
 
 You are an AI agent that needs a Stellar account to send and receive USDC on the Stellar blockchain {{NETWORK}}. This skill tells you how to get one in two API calls, with no XLM or prior Stellar setup required.
 
@@ -43,6 +44,26 @@ winget install --id Stellar.StellarCLI
 ```
 
 Alternatively, you can use the `@stellar/stellar-sdk` npm package or any Stellar SDK if you prefer to work in code.
+
+---
+
+## API Shape
+
+The full flow is two HTTP calls. Here are the exact JSON request and response bodies:
+
+```
+POST /create
+  Request:  { "public_key": "<your Stellar public key>" }
+  Response: { "xdr": "<unsigned transaction XDR>", "network_passphrase": "..." }
+
+POST /submit
+  Request:  { "xdr": "<agent-signed XDR>" }
+  Response: { "status": "ok", "hash": "...", "ledger": ..., "agent_public_key": "...", "explorer_url": "..." }
+```
+
+The field name is `xdr` in both the `/create` response and the `/submit` request. Not `unsigned_xdr`, not `signed_xdr` — just `xdr`.
+
+**Important:** You must call `/submit` within {{RESERVATION_TTL_SECONDS}} seconds of `/create`. If the reservation expires, just call `/create` again to get a fresh transaction, then inspect, sign, and `/submit` as normal.
 
 ---
 

@@ -24,7 +24,7 @@ const config: Config = {
   rateLimitPerIpMax: 10,
   channelReservationTtlMs: 60000,
   maxTxFee: 10000,
-  maxStartingBalance: 1,
+  maxStartingBalance: 0,
 };
 
 // Mock Horizon

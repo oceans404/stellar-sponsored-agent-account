@@ -76,6 +76,6 @@ export function loadConfig(): Config {
       10,
     ),
     maxTxFee: parseInt(process.env.MAX_TX_FEE || '10000', 10),
-    maxStartingBalance: parseInt(process.env.MAX_STARTING_BALANCE || '1', 10),
+    maxStartingBalance: parseInt(process.env.MAX_STARTING_BALANCE || '0', 10),
   };
 }

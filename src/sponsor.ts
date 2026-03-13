@@ -47,7 +47,7 @@ export async function buildSponsorshipTransaction(
     .addOperation(
       Operation.createAccount({
         destination: agentPublicKey,
-        startingBalance: '0.0000001',
+        startingBalance: '0',
         source: config.sponsorPublicKey,
       }),
     )

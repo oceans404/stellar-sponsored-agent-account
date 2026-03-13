@@ -34,7 +34,7 @@ const config: Config = {
   rateLimitPerIpMax: 5,
   channelReservationTtlMs: 60000,
   maxTxFee: 10000,
-  maxStartingBalance: 1,
+  maxStartingBalance: 0,
 };
 
 function buildValidTransaction() {
@@ -52,7 +52,7 @@ function buildValidTransaction() {
     .addOperation(
       Operation.createAccount({
         destination: agentKeypair.publicKey(),
-        startingBalance: '0.0000001',
+        startingBalance: '0',
         source: sponsorKeypair.publicKey(),
       }),
     )
@@ -146,7 +146,7 @@ describe('validateSignedXdr', () => {
       .addOperation(
         Operation.createAccount({
           destination: agentKeypair.publicKey(),
-          startingBalance: '0.0000001',
+          startingBalance: '0',
           source: sponsorKeypair.publicKey(),
         }),
       )
@@ -194,7 +194,7 @@ describe('validateSignedXdr', () => {
       .addOperation(
         Operation.createAccount({
           destination: agentKeypair.publicKey(),
-          startingBalance: '0.0000001',
+          startingBalance: '0',
           source: sponsorKeypair.publicKey(),
         }),
       )
@@ -235,7 +235,7 @@ describe('validateSignedXdr', () => {
       .addOperation(
         Operation.createAccount({
           destination: agentKeypair.publicKey(),
-          startingBalance: '0.0000001',
+          startingBalance: '0',
           source: sponsorKeypair.publicKey(),
         }),
       )
@@ -318,7 +318,7 @@ describe('validateSignedXdr', () => {
       .addOperation(
         Operation.createAccount({
           destination: agentKeypair.publicKey(),
-          startingBalance: '0.0000001',
+          startingBalance: '0',
           source: sponsorKeypair.publicKey(),
         }),
       )
@@ -395,7 +395,7 @@ describe('validateSignedXdr', () => {
       .addOperation(
         Operation.createAccount({
           destination: agentKeypair.publicKey(),
-          startingBalance: '0.0000001',
+          startingBalance: '0',
           source: sponsorKeypair.publicKey(),
         }),
       )
@@ -437,7 +437,7 @@ describe('validateSignedXdr', () => {
       .addOperation(
         Operation.createAccount({
           destination: agentKeypair.publicKey(),
-          startingBalance: '0.0000001',
+          startingBalance: '0',
           source: sponsorKeypair.publicKey(),
         }),
       )

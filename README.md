@@ -1,8 +1,8 @@
 # Stellar Sponsored Agent Account
 
-Give any AI agent a Stellar USDC wallet in two API calls. No prior balance needed. Costs 1 XLM per account (~$0.16 as of March 2026), covered by the service operator.
+Give any AI agent a Stellar USDC wallet in two API calls. No prior balance needed. Costs ~1.5 XLM per account in locked reserves, covered by the service operator.
 
-AI agents need a Stellar account to send and receive USDC. Creating one normally requires XLM (Stellar's native currency) — a chicken-and-egg problem. This service solves it by covering the ~1 XLM setup cost on behalf of the agent using Stellar's built-in [sponsorship protocol](https://developers.stellar.org/docs/glossary/sponsored-reserves/). The agent keeps full control of its own keys.
+AI agents need a Stellar account to send and receive USDC. Creating one normally requires XLM (Stellar's native currency) — a chicken-and-egg problem. This service solves it by covering the ~1.5 XLM setup cost on behalf of the agent using Stellar's built-in [sponsorship protocol](https://developers.stellar.org/docs/glossary/sponsored-reserves/). The agent keeps full control of its own keys.
 
 ## Try it now
 
@@ -176,7 +176,7 @@ See `.env.example` for all options.
 If you're a wallet service (Privy, Dynamic, CDP, etc.) evaluating Stellar as a payment rail for your agents:
 
 - **What you run:** This service, deployed with your own sponsor account and XLM
-- **What it costs:** ~1 XLM per agent (~$0.16 as of March 2026) in locked reserves (not spent — recoverable if the account is later merged)
+- **What it costs:** ~1.5 XLM per agent in locked reserves (not spent — recoverable if the account is later merged)
 - **What your agents get:** A fully active Stellar account with a USDC trustline, ready to receive payments immediately
 - **Integration effort:** Two HTTP calls. See the [Integration Example](#integration-example) above or the OpenAPI spec at `/openapi.json`
 
@@ -186,14 +186,14 @@ The sponsorship cost is comparable to covering gas on EVM chains, but uses Stell
 
 Here's a real agent account created by this service on testnet:
 
-**Agent account:** [`GBNJEFM4EE4CNPGFFKWUD2A4Z5AHSIHQK7CMPURWGMSZWCVEZLEIIB5H`](https://stellar.expert/explorer/testnet/account/GBNJEFM4EE4CNPGFFKWUD2A4Z5AHSIHQK7CMPURWGMSZWCVEZLEIIB5H)
+**Agent account:** [`GB2JZJ3MJBG55IDLHJ44EB62NQ46WH42U6L6ZS7JO6CC7Z6PKLJK3NRL`](https://stellar.expert/explorer/testnet/account/GB2JZJ3MJBG55IDLHJ44EB62NQ46WH42U6L6ZS7JO6CC7Z6PKLJK3NRL)
 
-The single atomic sponsorship transaction performed all four operations:
+The single atomic [sponsorship transaction](https://stellar.expert/explorer/testnet/tx/95d8ddf032a88bb1af705bcffdcc2b50cd522e52c2ea2176a6b34236b6cba888) performed all four operations:
 
-1. `GBHW...OV4H` sponsored reserves for `GBNJ...IB5H`
-2. `GBHW...OV4H` created account `GBNJ...IB5H` with starting balance 0.0000001 XLM
-3. `GBNJ...IB5H` established trustline to USDC (`GBBD...FLA5`)
-4. Finished sponsoring reserves for `GBNJ...IB5H`
+1. `GBHW...OV4H` sponsored reserves for `GB2J...3NRL`
+2. `GBHW...OV4H` created account `GB2J...3NRL` with starting balance 0 XLM (reserves are sponsored)
+3. `GB2J...3NRL` established trustline to USDC (`GBBD...FLA5`)
+4. Finished sponsoring reserves for `GB2J...3NRL`
 
 After onboarding, the account was funded with USDC via the [Circle faucet](https://faucet.circle.com/) — no additional setup needed.
 

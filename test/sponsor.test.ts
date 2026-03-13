@@ -23,7 +23,7 @@ const config: Config = {
   rateLimitPerIpMax: 5,
   channelReservationTtlMs: 60000,
   maxTxFee: 10000,
-  maxStartingBalance: 1,
+  maxStartingBalance: 0,
 };
 
 const channel: Channel = {
@@ -95,7 +95,7 @@ describe('buildSponsorshipTransaction', () => {
     expect(tx.operations[3].source).toBe(agentKeypair.publicKey());
   });
 
-  it('uses 1 stroop starting balance', async () => {
+  it('uses 0 starting balance (reserves are sponsored)', async () => {
     const result = await buildSponsorshipTransaction(
       agentKeypair.publicKey(),
       channel,
@@ -106,7 +106,7 @@ describe('buildSponsorshipTransaction', () => {
     const tx = TransactionBuilder.fromXDR(result.xdr, Networks.TESTNET);
 
     const createOp = tx.operations[1] as any;
-    expect(createOp.startingBalance).toBe('0.0000001');
+    expect(createOp.startingBalance).toBe('0.0000000');
   });
 
   it('sets correct USDC asset', async () => {

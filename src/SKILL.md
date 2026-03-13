@@ -20,21 +20,22 @@ You are an AI agent that needs a Stellar account to send and receive USDC on the
 
 ## What You Get
 
-- A funded Stellar account (reserves sponsored — you pay nothing)
+- A Stellar account with sponsored reserves (you pay nothing)
 - A USDC trustline (ready to receive USDC on Stellar {{NETWORK}} immediately)
 - Full self-custody (you generate and hold your own keys)
 
-Total cost to you: **zero**. The service sponsors ~1.0 XLM in reserves on your behalf.
+Total cost to you: **zero**. The service sponsors ~1.5 XLM in reserves on your behalf.
+
+Stellar accounts require a minimum balance of `(2 + numSubEntries) × 0.5 XLM`. For an account with one USDC trustline that's `(2 + 1) × 0.5 = 1.5 XLM`. The sponsor locks this on your behalf:
 
 | Item | XLM | Who pays |
 |------|-----|----------|
-| Base account reserve | 0.5 XLM | Sponsor (locked) |
-| USDC trustline reserve | 0.5 XLM | Sponsor (locked) |
-| Starting balance | 0.0000001 XLM | Sponsor (transferred) |
+| Base account reserve (2 × 0.5 XLM) | 1.0 XLM | Sponsor (locked) |
+| USDC trustline reserve (1 × 0.5 XLM) | 0.5 XLM | Sponsor (locked) |
 | Transaction fee | ~0.0001 XLM | Sponsor |
-| **Total** | **~1.0 XLM** | **Sponsor** |
+| **Total** | **~1.5 XLM** | **Sponsor** |
 
-The reserves are locked, not transferred. They stay on the sponsor's account but are earmarked for your account's existence. You don't need to pay anything back.
+The reserves are locked, not transferred. They stay on the sponsor's account but are earmarked for your account's existence. Your account is created with a 0 XLM balance — you don't need to pay anything back.
 
 ---
 
@@ -141,9 +142,9 @@ Response (200):
 ```
 
 The service builds a transaction that will:
-- Create your account (1 stroop starting balance)
+- Create your account (0 starting balance — reserves are sponsored)
 - Add a USDC trustline
-- Sponsor both reserves (~1.0 XLM, locked on your behalf)
+- Sponsor all reserves (~1.5 XLM, locked on your behalf)
 
 ### Step 4: Inspect the transaction (recommended)
 
@@ -159,7 +160,7 @@ Check that:
 - Exactly 4 operations: `beginSponsoringFutureReserves`, `createAccount`, `changeTrust`, `endSponsoringFutureReserves`
 - `createAccount` destination is your public key
 - `changeTrust` is for USDC with the issuer from `/info`
-- Starting balance is 0.0000001 XLM (1 stroop)
+- Starting balance is 0 XLM (reserves are sponsored)
 - No unexpected operations or memo
 
 **Do not sign if anything looks wrong.**
